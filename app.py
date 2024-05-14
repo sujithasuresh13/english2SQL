@@ -1,32 +1,57 @@
 import streamlit as st
 import openai
 
-# Function to convert English to SQL using OpenAI's API
-def english_to_sql(api_key, english_text):
-    openai.api_key = api_key
-    response = openai.Completion.create(
-        engine="davinci-codex",
-        prompt=f"Convert the following English text to SQL: {english_text}",
-        max_tokens=150
-    )
-    sql_query = response.choices[0].text.strip()
-    return sql_query
-
 # Streamlit app
-def main():
-    st.title("English to SQL Converter")
-    
-    api_key = st.text_input("Enter your OpenAI API key", type="password")
-    english_text = st.text_area("Enter the English text", placeholder="e.g., Show me the total sales for the last quarter")
-    
-    if st.button("Convert to SQL"):
-        if not api_key:
-            st.error("Please enter your OpenAI API key.")
-        elif not english_text:
-            st.error("Please enter some English text to convert.")
-        else:
-            sql_query = english_to_sql(api_key, english_text)
-            st.text_area("Generated SQL Query", value=sql_query, height=200)
+st.title("English to SQL Converter")
 
-if __name__ == "__main__":
-    main()
+# API Key input
+api_key = st.text_input("Enter your OpenAI API Key:", type="password")
+
+# Function to convert English to SQL
+def english_to_sql(api_key, query):
+    openai.api_key = api_key
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are an assistant that converts English to SQL."},
+            {"role": "user", "content": query}
+        ]
+    )
+    return response['choices'][0]['message']['content']
+
+# Input for English query
+english_query = st.text_area("Enter your English query:")
+
+if st.button("Convert to SQL"):
+    if not api_key:
+        st.error("Please enter your OpenAI API key.")
+    elif not english_query:
+        st.error("Please enter an English query.")
+    else:
+        with st.spinner("Converting..."):
+            try:
+                sql_query = english_to_sql(api_key, english_query)
+                st.success("SQL Query:")
+                st.code(sql_query, language="sql")
+            except Exception as e:
+                st.error(f"Error: {e}")
+
+# Display a footer
+st.markdown(
+    """
+    <style>
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        background-color: #f63366;
+        text-align: center;
+    }
+    </style>
+    <div class="footer">
+        <p>Powered by OpenAI and Streamlit</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
