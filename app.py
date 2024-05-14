@@ -13,7 +13,7 @@ openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 # Function to convert English to SQL
 def english_to_sql(query):
     #OpenAI.api_key = api_key
-   
+    st.warning('englist to sql..', icon='⚠')
     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
     st.info(llm(query))
     
