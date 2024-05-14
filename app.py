@@ -15,7 +15,7 @@ def english_to_sql(query):
     #OpenAI.api_key = api_key
     st.warning('englist to sql..', icon='⚠')
     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-    st.info(llm(query))
+    st.warning(llm(query))
     
     # response = llm.chats.completions.create(
     #     model="gpt-3.5-turbo",
