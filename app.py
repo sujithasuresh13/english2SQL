@@ -28,44 +28,44 @@ def english_to_sql(query):
 
 # Input for English query
 
-with st.form('my_form'):
-    english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
-    submitted = st.form_submit_button('Submit')
-    if not openai_api_key.startswith('sk-'):
-        st.warning('Please enter your OpenAI API key!', icon='⚠')
-    if submitted and openai_api_key.startswith('sk-'):
-        english_to_sql(english_query)
+# with st.form('my_form'):
+#     english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
+#     submitted = st.form_submit_button('Submit')
+#     if not openai_api_key.startswith('sk-'):
+#         st.warning('Please enter your OpenAI API key!', icon='⚠')
+#     if submitted and openai_api_key.startswith('sk-'):
+#         english_to_sql(english_query)
 
-# if st.button("Convert to SQL"):
-#     if not openai_api_key:
-#         st.error("Please enter your OpenAI API key.")
-#     elif not english_query:
-#         st.error("Please enter an English query.")
-#     else:
-#         with st.spinner("Converting..."):
-#             try:
-#                 sql_query = english_to_sql(openai_api_key, english_query)
-#                 st.success("SQL Query:")
-#                 st.code(sql_query, language="sql")
-#             except Exception as e:
-#                 st.error(f"Error from the code :: {e}")
+if st.button("Convert to SQL"):
+    if not openai_api_key:
+        st.error("Please enter your OpenAI API key.")
+    elif not english_query:
+        st.error("Please enter an English query.")
+    else:
+        with st.spinner("Converting..."):
+            try:
+                sql_query = english_to_sql(english_query)
+                st.success("SQL Query:")
+                st.code(sql_query, language="sql")
+            except Exception as e:
+                st.error(f"Error from the code :: {e}")
 
-# # Display a footer
-# st.markdown(
-#     """
-#     <style>
-#     .footer {
-#         position: fixed;
-#         bottom: 0;
-#         width: 100%;
-#         color: white;
-#         background-color: #f63366;
-#         text-align: center;
-#     }
-#     </style>
-#     <div class="footer">
-#         <p>Powered by OpenAI and Streamlit</p>
-#     </div>
-#     """,
-#     unsafe_allow_html=True
-# )
+# Display a footer
+st.markdown(
+    """
+    <style>
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        background-color: #f63366;
+        text-align: center;
+    }
+    </style>
+    <div class="footer">
+        <p>Powered by OpenAI and Streamlit</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
