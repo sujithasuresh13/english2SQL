@@ -39,8 +39,8 @@ def english_to_sql(query):
 english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
 
 if st.button("Convert to SQL"):
-    if not openai_api_key:
-        st.error("Please enter your OpenAI API key.")
+    if not openai_api_key.startswith('sk-'):
+        st.warning('Please enter your OpenAI API key!', icon='⚠')
     elif not english_query:
         st.error("Please enter an English query.")
     else:
