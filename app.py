@@ -32,13 +32,11 @@ english_query = st.text_area("Enter your English query:", "top sales in the last
 
 if st.button("Convert to SQL"):
     with st.spinner("Converting..."):
-        try:
-            st.warning('processing..', icon='⚠')
-            sql_query = english_to_sql(english_query)
-            st.success("SQL Query:")
-            st.code(sql_query, language="sql")
-        except Exception as e:
-            st.error(f"Error from the code :: {e}")
+        st.warning('processing..', icon='⚠')
+        sql_query = english_to_sql(english_query)
+        st.success("SQL Query:")
+        st.code(sql_query, language="sql")
+    
 
 
 
