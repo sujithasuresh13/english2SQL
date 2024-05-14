@@ -7,7 +7,8 @@ from langchain_community.llms import OpenAI
 st.title("English to SQL Converter")
 
 # API Key input
-openai_api_key = st.text_input("Enter your OpenAI API Key:", type="password")
+# openai_api_key = st.text_input("Enter your OpenAI API Key:", type="password")
+openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
 # Function to convert English to SQL
 def english_to_sql(openai_api_key, query):
