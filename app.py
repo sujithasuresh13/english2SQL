@@ -1,30 +1,32 @@
 import streamlit as st
 import openai
 
-# Set up OpenAI API key
-openai.api_key = 'sk-proj-EH5zKkQqNqLPmrksxJbGT3BlbkFJCiWotwUvgGgkhYvrEqas'
-
-# Define a function to convert English to SQL
-def english_to_sql(prompt):
+# Function to convert English to SQL using OpenAI's API
+def english_to_sql(api_key, english_text):
+    openai.api_key = api_key
     response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
+        engine="davinci-codex",
+        prompt=f"Convert the following English text to SQL: {english_text}",
         max_tokens=150
     )
-    return response.choices[0].text.strip()
+    sql_query = response.choices[0].text.strip()
+    return sql_query
 
-# Streamlit app interface
-st.title("English to SQL Converter")
-st.write("Enter an English sentence to convert it to an SQL query.")
+# Streamlit app
+def main():
+    st.title("English to SQL Converter")
+    
+    api_key = st.text_input("Enter your OpenAI API key", type="password")
+    english_text = st.text_area("Enter the English text", placeholder="e.g., Show me the total sales for the last quarter")
+    
+    if st.button("Convert to SQL"):
+        if not api_key:
+            st.error("Please enter your OpenAI API key.")
+        elif not english_text:
+            st.error("Please enter some English text to convert.")
+        else:
+            sql_query = english_to_sql(api_key, english_text)
+            st.text_area("Generated SQL Query", value=sql_query, height=200)
 
-# Input text box for English sentence
-user_input = st.text_area("English Sentence", "")
-
-if st.button("Convert"):
-    if user_input:
-        sql_query = english_to_sql(user_input)
-        st.write("Generated SQL Query:")
-        st.code(sql_query)
-    else:
-        st.write("Please enter an English sentence.")
-
+if __name__ == "__main__":
+    main()
