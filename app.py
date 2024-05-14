@@ -17,6 +17,7 @@ def english_to_sql(query):
     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
     st.warning(llm(query))
     
+    
     # response = llm.chats.completions.create(
     #     model="gpt-3.5-turbo",
     #     messages=[
@@ -46,42 +47,45 @@ with st.spinner("Converting..."):
 #     if submitted and openai_api_key.startswith('sk-'):
 #         english_to_sql(english_query)
 
+
+
+
 # Input for English query
-english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
+# english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
 
-if st.button("Convert to SQL"):
-    if not openai_api_key.startswith('sk-'):
-        st.warning('Please enter your OpenAI API key!', icon='⚠')
-    elif not english_query:
-         st.warning('Please enter query!', icon='⚠')
-         st.error("Please enter an English query.")
-    else:
-        st.warning('converting..', icon='⚠')
-        with st.spinner("Converting..."):
-            try:
-                st.warning('processing..', icon='⚠')
-                sql_query = english_to_sql(english_query)
-                st.success("SQL Query:")
-                st.code(sql_query, language="sql")
-            except Exception as e:
-                st.error(f"Error from the code :: {e}")
+# if st.button("Convert to SQL"):
+#     if not openai_api_key.startswith('sk-'):
+#         st.warning('Please enter your OpenAI API key!', icon='⚠')
+#     elif not english_query:
+#          st.warning('Please enter query!', icon='⚠')
+#          st.error("Please enter an English query.")
+#     else:
+#         st.warning('converting..', icon='⚠')
+#         with st.spinner("Converting..."):
+#             try:
+#                 st.warning('processing..', icon='⚠')
+#                 sql_query = english_to_sql(english_query)
+#                 st.success("SQL Query:")
+#                 st.code(sql_query, language="sql")
+#             except Exception as e:
+#                 st.error(f"Error from the code :: {e}")
 
-# Display a footer
-st.markdown(
-    """
-    <style>
-    .footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        color: white;
-        background-color: #f63366;
-        text-align: center;
-    }
-    </style>
-    <div class="footer">
-        <p>Powered by OpenAI and Streamlit</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# # Display a footer
+# st.markdown(
+#     """
+#     <style>
+#     .footer {
+#         position: fixed;
+#         bottom: 0;
+#         width: 100%;
+#         color: white;
+#         background-color: #f63366;
+#         text-align: center;
+#     }
+#     </style>
+#     <div class="footer">
+#         <p>Powered by OpenAI and Streamlit</p>
+#     </div>
+#     """,
+#     unsafe_allow_html=True
+# )
