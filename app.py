@@ -11,8 +11,12 @@ api_key = st.text_input("Enter your OpenAI API Key:", type="password")
 
 # Function to convert English to SQL
 def english_to_sql(api_key, query):
-    OpenAI.api_key = api_key
-    response = OpenAI.chat.completion.create(
+    #OpenAI.api_key = api_key
+   
+    llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
+    st.info(llm(input_text))
+    
+    response = llm.chats.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are an assistant that converts English to SQL."},
