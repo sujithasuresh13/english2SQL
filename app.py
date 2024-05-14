@@ -1,5 +1,5 @@
 import streamlit as st
-import openai
+from langchain.llms import OpenAI
 
 # Streamlit app
 st.title("English to SQL Converter")
