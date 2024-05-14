@@ -27,6 +27,9 @@ def english_to_sql(query):
     # )
     # return response['choices'][0]['message']['content']
 
+# Input for English query
+english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
+
 with st.spinner("Converting..."):
     try:
         st.warning('processing..', icon='⚠')
@@ -35,7 +38,6 @@ with st.spinner("Converting..."):
         st.code(sql_query, language="sql")
     except Exception as e:
         st.error(f"Error from the code :: {e}")
-
 
 
 
@@ -49,9 +51,6 @@ with st.spinner("Converting..."):
 
 
 
-
-# Input for English query
-# english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
 
 # if st.button("Convert to SQL"):
 #     if not openai_api_key.startswith('sk-'):
