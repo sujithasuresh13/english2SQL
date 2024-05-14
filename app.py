@@ -26,6 +26,17 @@ def english_to_sql(query):
     # )
     # return response['choices'][0]['message']['content']
 
+with st.spinner("Converting..."):
+    try:
+        st.warning('processing..', icon='⚠')
+        sql_query = english_to_sql(english_query)
+        st.success("SQL Query:")
+        st.code(sql_query, language="sql")
+    except Exception as e:
+        st.error(f"Error from the code :: {e}")
+
+
+
 
 # with st.form('my_form'):
 #     english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
