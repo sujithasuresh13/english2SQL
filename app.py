@@ -40,7 +40,7 @@ if st.button("Convert to SQL"):
                 st.success("SQL Query:")
                 st.code(sql_query, language="sql")
             except Exception as e:
-                st.error(f"Error: {e}")
+                st.error(f"Error from the code :: {e}")
 
 # Display a footer
 st.markdown(
