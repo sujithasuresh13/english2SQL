@@ -36,7 +36,7 @@ if st.button("Convert to SQL"):
     else:
         with st.spinner("Converting..."):
             try:
-                sql_query = english_to_sql(api_key, english_query)
+                sql_query = english_to_sql(openai_api_key, english_query)
                 st.success("SQL Query:")
                 st.code(sql_query, language="sql")
             except Exception as e:
