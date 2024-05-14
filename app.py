@@ -26,7 +26,6 @@ def english_to_sql(query):
     # )
     # return response['choices'][0]['message']['content']
 
-# Input for English query
 
 # with st.form('my_form'):
 #     english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
@@ -35,6 +34,9 @@ def english_to_sql(query):
 #         st.warning('Please enter your OpenAI API key!', icon='⚠')
 #     if submitted and openai_api_key.startswith('sk-'):
 #         english_to_sql(english_query)
+
+# Input for English query
+english_query = st.text_area("Enter your English query:", "top sales in the last quarter")
 
 if st.button("Convert to SQL"):
     if not openai_api_key:
