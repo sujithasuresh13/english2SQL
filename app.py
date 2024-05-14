@@ -16,14 +16,14 @@ def english_to_sql(openai_api_key, query):
     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
     st.info(llm(query))
     
-    response = llm.chats.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are an assistant that converts English to SQL."},
-            {"role": "user", "content": query}
-        ]
-    )
-    return response['choices'][0]['message']['content']
+    # response = llm.chats.completions.create(
+    #     model="gpt-3.5-turbo",
+    #     messages=[
+    #         {"role": "system", "content": "You are an assistant that converts English to SQL."},
+    #         {"role": "user", "content": query}
+    #     ]
+    # )
+    # return response['choices'][0]['message']['content']
 
 # Input for English query
 english_query = st.text_area("Enter your English query:")
