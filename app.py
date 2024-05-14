@@ -1,7 +1,7 @@
 import streamlit as st
-#from langchain.llms import OpenAI
+from langchain.llms import OpenAI
 #from langchain_community.llms import OpenAI
-from openai import OpenAI
+#from openai import OpenAI
 
 # Streamlit app
 st.title("English to SQL Converter")
@@ -11,8 +11,8 @@ api_key = st.text_input("Enter your OpenAI API Key:", type="password")
 
 # Function to convert English to SQL
 def english_to_sql(api_key, query):
-    openai.api_key = api_key
-    response = openai.ChatCompletion.create(
+    OpenAI.api_key = api_key
+    response = OpenAI.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are an assistant that converts English to SQL."},
