@@ -42,10 +42,13 @@ if st.button("Convert to SQL"):
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     elif not english_query:
-        st.error("Please enter an English query.")
+         st.warning('Please enter query!', icon='⚠')
+         st.error("Please enter an English query.")
     else:
+        st.warning('converting..', icon='⚠')
         with st.spinner("Converting..."):
             try:
+                st.warning('processing..', icon='⚠')
                 sql_query = english_to_sql(english_query)
                 st.success("SQL Query:")
                 st.code(sql_query, language="sql")
