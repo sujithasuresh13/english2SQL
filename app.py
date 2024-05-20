@@ -39,7 +39,7 @@ if st.button("Convert to SQL"):
 '''    
 #---------------------------------------
 
-st.title('👩‍💼 Welcome to AI-Powered Resume Builder')
+st.title('English to SQL Converter')
 
 api_key = st.sidebar.text_input('Enter your OpenAI API key: ', type='password')
 
