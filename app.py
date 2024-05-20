@@ -23,7 +23,7 @@ def generate_response(english_query):
         temperature=0.7,
         max_tokens=512,
     )
-    chat_completion.choices[0].messages.content
+    chat_completion.choices[0].message.content
 
 with st.form('my_form'):
 
