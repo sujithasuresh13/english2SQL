@@ -66,7 +66,7 @@ def generate_response(english_query):
 
 with st.form('my_form'):
 
-    english_query = st.text_input("Enter your English query:", "top sales in the last quarter")
+    english_query = st.text_input("Enter your English query:")
 
     submitted = st.form_submit_button('Submit')
    
